@@ -111,10 +111,17 @@ class Field extends React.Component {
         flexDirection="column"
         alignItems="flex-start"
         beingDragged={beingDragged}
-        p={4}
+        py={3}
+        px={3}
         w={1}
       >
-        <Flex w={1} p={2} justifyContent="space-between" alignItems="flex-end">
+        <Flex
+          w={1}
+          px={3}
+          py={1}
+          justifyContent="space-between"
+          alignItems="flex-end"
+        >
           <EditableText
             value={label}
             placeholder="Label"
@@ -198,12 +205,12 @@ const App = ({
               dark
               w={2 / 6}
               flexDirection="column"
-              px={0}
-              py={3}
+              px={2}
+              py={5}
               mt={4}
               innerRef={provided.innerRef}
             >
-              <Flex w={1} px={3} py={2} justifyContent="flex-end">
+              <Flex w={1} pb={2} px={3} justifyContent="flex-end">
                 <EditableTitle
                   textAlign="right"
                   value={form.name}
