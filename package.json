@@ -1,0 +1,26 @@
+{
+  "name": "enki",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@scottwey/alkali-ui": "^0.1.5",
+    "grid-styled": "^4.1.0",
+    "react": "^16.3.2",
+    "react-beautiful-dnd": "^7.1.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-textarea-autosize": "^6.1.0",
+    "redux": "^4.0.0",
+    "styled-components": "^3.2.6",
+    "styled-system": "^2.2.5"
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "NODE_PATH=src/ react-scripts start",
+    "build": "NODE_PATH=src/ react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
