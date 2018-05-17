@@ -7,6 +7,9 @@ import { connect } from "react-redux";
 import * as formActions from "ducks/form";
 import { Button, Card, Title, Text } from "@scottwey/alkali-ui";
 import TextArea from "react-textarea-autosize";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import faCog from "@fortawesome/fontawesome-free-solid/faCog";
+import faTimes from "@fortawesome/fontawesome-free-solid/faTimes";
 
 const FieldColumn = Card.extend``;
 
@@ -82,16 +85,18 @@ const FieldContainer = Flex.extend`
 const ErrorsAndWarnings = Flex.extend.attrs({
   children: ({ error, warning }) => error || warning,
   px: 3,
-  py: ({ error, warning }) => (error || warning ? 2 : 0)
+  py: ({ error, warning }) => (error || warning ? 2 : 0),
+  my: 1
 })`
+  font-weight: 400;
   font-size: 1rem;
   width: 100%;
   transition: all .3s ease;
   background: ${({ error, warning }) =>
-    error || warning ? "rgba(255, 255, 255, 0.9)" : "transparent"};
+    error || warning ? "white" : "transparent"};
   height: ${({ error, warning }) => (error || warning ? "auto" : "0")};
   color: ${({ error, warning }) =>
-    error ? "#cc0000" : warning ? "#eebb00" : "black"};
+    error ? "red" : warning ? "#eebb00" : "black"};
 `;
 
 class Field extends React.Component {
@@ -144,8 +149,11 @@ class Field extends React.Component {
         <ErrorsAndWarnings error="" />
         {onRemove && (
           <Flex w={1} justifyContent="flex-end">
-            <Button mt={3} white onClick={() => onRemove({ id })}>
-              remove
+            <Button mx={1} mt={3} px={3} red onClick={() => onRemove({ id })}>
+              <FontAwesomeIcon icon={faTimes} />
+            </Button>
+            <Button mx={1} mt={3} px={3} white onClick={() => onRemove({ id })}>
+              <FontAwesomeIcon icon={faCog} />
             </Button>
           </Flex>
         )}
@@ -186,7 +194,7 @@ const App = ({
   return (
     <Flex w={1} justifyContent="center" alignItems="flex-start">
       <ButtonColumn flexDirection="column" alignItems="center" px={4} py={4}>
-        <Title mb={3}>Append</Title>
+        <Title mb={3}>Components</Title>
         {inputTypes.map(({ element, type }) => (
           <Button
             black

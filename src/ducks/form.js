@@ -1,3 +1,4 @@
+const SET_FORM = "form/SET";
 const EDIT_NAME = "form/EDIT_NAME";
 const ADD_FIELD = "fields/ADD";
 const REMOVE_FIELD = "fields/REMOVE";
@@ -52,6 +53,9 @@ const fieldReducer = (state = [], action) => {
 
 const reducer = (state = { name: "", fields: [] }, action) => {
   switch (action.type) {
+    case SET_FORM: {
+      return action.form;
+    }
     case EDIT_NAME: {
       const { name } = action;
       return { ...state, name };
@@ -64,6 +68,7 @@ const reducer = (state = { name: "", fields: [] }, action) => {
 
 export default reducer;
 
+export const setForm = ({ form }) => ({ type: SET_FORM, form });
 export const editName = ({ name }) => ({ type: EDIT_NAME, name });
 export const addField = ({ payload }) => ({ type: ADD_FIELD, payload });
 export const removeField = ({ id }) => ({ type: REMOVE_FIELD, id });
