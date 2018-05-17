@@ -4,7 +4,8 @@ import AlkaliProvider from "@scottwey/alkali-ui";
 import store from "store";
 import Editor from "./Editor";
 
-const colors = { red: "#9f0330" };
+const colors = { black: "#333340", red: "#c00" };
+colors.primary = colors.black;
 
 const App = () => (
   <ReduxProvider store={store}>
