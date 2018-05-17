@@ -6,32 +6,31 @@ import { Card } from "@scottwey/alkali-ui";
 import Field from "components/FieldEditor";
 import formable from "connectors/formable";
 
+const onDragEnd = (callback, { source, destination }) => {
+  if (!destination) {
+    return;
+  }
+  callback({ from: source.index, to: destination.index });
+};
+
 const FormEditor = ({ moveField, removeField, editField, editName, form }) => {
   const { fields } = form;
 
-  const onDragEnd = ({ source, destination }) => {
-    if (!destination) {
-      return;
-    }
-    moveField({ from: source.index, to: destination.index });
-  };
-
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd.bind(null, moveField)}>
       <Droppable droppableId="droppable">
         {(provided, snapshot) => (
           <Card
             primary
             w={2 / 6}
             flexDirection="column"
-            px={2}
-            py={5}
+            px={0}
+            py={4}
             mt={4}
             innerRef={provided.innerRef}
           >
-            <Flex w={1} pb={2} px={3} justifyContent="flex-end">
+            <Flex w={1} py={4} pl={4} justifyContent="flex-start">
               <EditableTitle
-                textAlign="right"
                 value={form.name}
                 placeholder="Form Name"
                 onChange={e => editName({ name: e.target.value })}

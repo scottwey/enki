@@ -11,9 +11,10 @@ const inputStyleMixin = `
   }
 `;
 
-export const width = ({ value, placeholder }) =>
-  `${((value && 0.9 * value.length) ||
+export const width = ({ value, placeholder }) => {
+  return `width: ${((value && 0.9 * value.length) ||
     (placeholder && 0.9 * placeholder.length) ||
     3) + 1.5}ch`;
+};
 
 export default inputStyleMixin;

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import ErrorsAndWarnings from "components/ErrorsAndWarnings";
 import Input from "components/Input";
 import { Flex } from "grid-styled";
@@ -18,9 +19,13 @@ const FieldRenderer = ({ element, type }) => {
 
 const FieldContainer = Flex.extend`
   position: relative;
-  border-top: ${({ top, beingDragged }) =>
-    top || beingDragged ? "none" : "1px solid rgba(250, 250, 250, 0.3)"};
   background: inherit;
+  border-left: 12px solid rgba(170, 170, 190, 0.3);
+  transition: border-left 0.3s linear;
+  &:hover,
+  &:active {
+    border-left: 12px solid rgba(170, 170, 190, 0.7);
+  }
 `;
 
 class Field extends React.Component {
@@ -40,8 +45,9 @@ class Field extends React.Component {
         flexDirection="column"
         alignItems="flex-start"
         beingDragged={beingDragged}
-        py={3}
-        px={3}
+        my={3}
+        py={1}
+        px={4}
         w={1}
       >
         <Flex

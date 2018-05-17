@@ -2,13 +2,7 @@ import React from "react";
 import { Flex } from "grid-styled";
 import { Button, Title } from "@scottwey/alkali-ui";
 import formable from "connectors/formable";
-
-const inputTypes = [
-  { element: "input", type: "text" },
-  { element: "input", type: "email" },
-  { element: "input", type: "number" },
-  { element: "textarea" }
-];
+import { inputTypes } from "config";
 
 const ButtonColumn = Flex.extend`
   min-width: 15rem;
