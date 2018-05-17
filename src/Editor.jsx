@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { themeGet } from "styled-system";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Flex } from "grid-styled";
 import { bindActionCreators } from "redux";
@@ -78,8 +79,7 @@ const FieldContainer = Flex.extend`
   position: relative;
   border-top: ${({ top, beingDragged }) =>
     top || beingDragged ? "none" : "1px solid rgba(250, 250, 250, 0.3)"};
-  background: ${({ beingDragged }) => (beingDragged ? "#72727f" : "#52525f")};
-  }
+  background: ${themeGet("colors.black", "inherit")};
 `;
 
 const ErrorsAndWarnings = Flex.extend.attrs({
@@ -96,7 +96,7 @@ const ErrorsAndWarnings = Flex.extend.attrs({
     error || warning ? "white" : "transparent"};
   height: ${({ error, warning }) => (error || warning ? "auto" : "0")};
   color: ${({ error, warning }) =>
-    error ? "red" : warning ? "#eebb00" : "black"};
+    error ? "red" : warning ? "#eebb00" : themeGet("colors.black", "black")};
 `;
 
 class Field extends React.Component {
@@ -149,7 +149,14 @@ class Field extends React.Component {
         <ErrorsAndWarnings error="" />
         {onRemove && (
           <Flex w={1} justifyContent="flex-end">
-            <Button mx={1} mt={3} px={3} red onClick={() => onRemove({ id })}>
+            <Button
+              mx={1}
+              mt={3}
+              px={3}
+              red
+              color="white"
+              onClick={() => onRemove({ id })}
+            >
               <FontAwesomeIcon icon={faTimes} />
             </Button>
             <Button mx={1} mt={3} px={3} white onClick={() => onRemove({ id })}>
