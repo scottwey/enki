@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import ErrorsAndWarnings from "components/ErrorsAndWarnings";
 import Input from "components/Input";
 import { Flex } from "grid-styled";
@@ -42,6 +41,7 @@ class Field extends React.Component {
     return (
       <FieldContainer
         {...rest}
+        primary
         flexDirection="column"
         alignItems="flex-start"
         beingDragged={beingDragged}
