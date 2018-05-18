@@ -15,6 +15,7 @@ const Input = styled.input`
   transition: border 0.3s linear;
   box-sizing: border-box;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1), inset 0 0 4px rgba(0, 0, 0, 0.2);
+  color: inherit;
   &:focus {
     border: 1px solid rgba(200, 200, 200, 0.7);
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1),

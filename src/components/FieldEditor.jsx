@@ -67,9 +67,7 @@ class Field extends React.Component {
               });
             }}
           />
-          <Text fontSize={1} color="rgba(255, 255, 255, 0.7)">
-            {type || element}
-          </Text>
+          <Text fontSize={1}>{type || element}</Text>
         </Flex>
         <FieldRenderer
           type={type}
