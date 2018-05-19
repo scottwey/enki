@@ -9,6 +9,7 @@
     "@scottwey/alkali-ui": "^0.1.15",
     "grid-styled": "^4.1.0",
     "polished": "^1.9.2",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-beautiful-dnd": "^7.1.2",
     "react-dom": "^16.3.2",

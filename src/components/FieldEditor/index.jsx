@@ -1,5 +1,4 @@
 import React from "react";
-import ErrorsAndWarnings from "components/ErrorsAndWarnings";
 import Input from "components/Input";
 import { Flex } from "grid-styled";
 import TextArea from "components/TextArea";
@@ -8,6 +7,8 @@ import { Button, Text } from "@scottwey/alkali-ui";
 import faCog from "@fortawesome/fontawesome-free-solid/faCog";
 import faTimes from "@fortawesome/fontawesome-free-solid/faTimes";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import Settings from "components/FieldEditor/Settings";
+import SettingsButton from "components/FieldEditor/SettingsButton";
 
 const elementMapping = { textarea: TextArea, input: Input };
 
@@ -19,11 +20,11 @@ const FieldRenderer = ({ element, type }) => {
 const FieldContainer = Flex.extend`
   position: relative;
   background: inherit;
-  border-left: 12px solid rgba(170, 170, 190, 0.3);
+  border-left: 12px solid rgba(170, 170, 190, 0.2);
   transition: border-left 0.3s linear;
   &:hover,
   &:active {
-    border-left: 12px solid rgba(170, 170, 190, 0.7);
+    border-left: 12px solid rgba(170, 170, 190, 0.65);
   }
 `;
 
@@ -52,8 +53,8 @@ class Field extends React.Component {
       >
         <Flex
           w={1}
-          px={3}
           py={1}
+          px={1}
           justifyContent="space-between"
           alignItems="flex-end"
         >
@@ -74,17 +75,22 @@ class Field extends React.Component {
           element={element}
           placeholder={placeholder}
         />
-        <ErrorsAndWarnings error="" />
         {onRemove && (
           <Flex w={1} justifyContent="flex-end">
-            <Button mx={1} mt={3} px={3} red onClick={() => onRemove({ id })}>
+            <Button
+              white
+              color="red"
+              mx={2}
+              mt={3}
+              px={3}
+              onClick={() => onRemove({ id })}
+            >
               <FontAwesomeIcon icon={faTimes} />
             </Button>
-            <Button mx={1} mt={3} px={3} white onClick={() => onRemove({ id })}>
-              <FontAwesomeIcon icon={faCog} />
-            </Button>
+            <SettingsButton id={id} />
           </Flex>
         )}
+        <Settings onEdit={onEdit} id={id} field={field} />
       </FieldContainer>
     );
   }

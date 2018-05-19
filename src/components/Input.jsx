@@ -8,10 +8,10 @@ const Input = styled.input`
   border: none;
   border: 1px solid rgba(200, 200, 200, 0.3);
   width: 100%;
-  font-size: 1.5rem;
-  padding: 0 1rem;
-  height: 3rem;
-  line-height: 3rem;
+  font-size: 1.3rem;
+  padding: 0 0.5rem;
+  height: 2.3rem;
+  line-height: 2.3rem;
   transition: border 0.3s linear;
   box-sizing: border-box;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1), inset 0 0 4px rgba(0, 0, 0, 0.2);
