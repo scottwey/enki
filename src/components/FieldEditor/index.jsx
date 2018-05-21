@@ -1,9 +1,12 @@
 import React from "react";
-import Input from "components/Input";
 import { Flex } from "grid-styled";
-import TextArea from "components/TextArea";
-import { Text as EditableText } from "components/Editable";
-import { Button, Text } from "@scottwey/alkali-ui";
+import {
+  Button,
+  Text,
+  EditableText,
+  TextArea,
+  Input
+} from "@scottwey/alkali-ui";
 import faCog from "@fortawesome/fontawesome-free-solid/faCog";
 import faTimes from "@fortawesome/fontawesome-free-solid/faTimes";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
@@ -12,9 +15,9 @@ import SettingsButton from "components/FieldEditor/SettingsButton";
 
 const elementMapping = { textarea: TextArea, input: Input };
 
-const FieldRenderer = ({ element, type }) => {
+const FieldRenderer = ({ element, type, placeholder }) => {
   const Element = elementMapping[element] || element;
-  return <Element type={type} />;
+  return <Element type={type} placeholder={placeholder} />;
 };
 
 const FieldContainer = Flex.extend`
@@ -47,7 +50,8 @@ class Field extends React.Component {
         alignItems="flex-start"
         beingDragged={beingDragged}
         my={3}
-        py={1}
+        pt={1}
+        pb={3}
         px={4}
         w={1}
       >
@@ -62,11 +66,7 @@ class Field extends React.Component {
             value={label}
             placeholder="Label"
             my={2}
-            onChange={e => {
-              onEdit({
-                payload: { ...field, label: e.target.value }
-              });
-            }}
+            onChange={e => onEdit({ label: e.target.value })}
           />
           <Text fontSize={1}>{type || element}</Text>
         </Flex>

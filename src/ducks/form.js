@@ -42,7 +42,8 @@ const fieldReducer = (state = [], action) => {
     }
     case EDIT_FIELD: {
       return state.map(
-        field => (action.payload.id === field.id ? action.payload : field)
+        field =>
+          action.id === field.id ? { ...field, ...action.payload } : field
       );
     }
     default: {
@@ -72,6 +73,10 @@ export const setForm = ({ form }) => ({ type: SET_FORM, form });
 export const editName = ({ name }) => ({ type: EDIT_NAME, name });
 export const addField = ({ payload }) => ({ type: ADD_FIELD, payload });
 export const removeField = ({ id }) => ({ type: REMOVE_FIELD, id });
-export const editField = ({ payload }) => ({ type: EDIT_FIELD, payload });
+export const editField = ({ id, payload }) => ({
+  type: EDIT_FIELD,
+  id,
+  payload
+});
 export const swapField = ({ from, to }) => ({ type: SWAP_FIELD, from, to });
 export const moveField = ({ from, to }) => ({ type: MOVE_FIELD, from, to });

@@ -25,12 +25,13 @@
     humps "^2.0.1"
     prop-types "^15.5.7"
 
-"@scottwey/alkali-ui@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@scottwey/alkali-ui/-/alkali-ui-0.1.15.tgz#ac13db52f31e811fe9c02c83c488544d88d7c872"
+"@scottwey/alkali-ui@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@scottwey/alkali-ui/-/alkali-ui-0.2.6.tgz#3d8538ef2105ce50f26eb98035a953c09c06daaa"
   dependencies:
     grid-styled "^3.2.1"
     polished "^1.9.2"
+    react-textarea-autosize "^6.1.0"
     styled-components "^3.2.1"
     styled-system "^2.2.1"
 

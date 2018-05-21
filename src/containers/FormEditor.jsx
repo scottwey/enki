@@ -1,8 +1,7 @@
 import React from "react";
 import { Flex } from "grid-styled";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Title as EditableTitle } from "components/Editable";
-import { Card } from "@scottwey/alkali-ui";
+import { Card, EditableTitle } from "@scottwey/alkali-ui";
 import Field from "components/FieldEditor";
 import formable from "connectors/formable";
 
@@ -48,7 +47,7 @@ const FormEditor = ({ moveField, removeField, editField, editName, form }) => {
                       {...provided.dragHandleProps}
                       style={provided.draggableProps.style}
                       onRemove={removeField}
-                      onEdit={editField}
+                      onEdit={payload => editField({ id: field.id, payload })}
                       field={field}
                     />
                   )}
