@@ -12,7 +12,14 @@ const onDragEnd = (callback, { source, destination }) => {
   callback({ from: source.index, to: destination.index });
 };
 
-const FormEditor = ({ moveField, removeField, editField, editName, form }) => {
+const FormEditor = ({
+  moveField,
+  removeField,
+  editField,
+  editName,
+  toggleValidation,
+  form
+}) => {
   const { fields } = form;
 
   return (
@@ -40,14 +47,16 @@ const FormEditor = ({ moveField, removeField, editField, editName, form }) => {
                 <Draggable key={field.id} draggableId={field.id} index={index}>
                   {(provided, snapshot) => (
                     <Field
-                      beingDragged={snapshot.isDragging}
-                      top={index === 0}
-                      innerRef={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      beingDragged={snapshot.isDragging}
+                      innerRef={provided.innerRef}
                       style={provided.draggableProps.style}
                       onRemove={removeField}
                       onEdit={payload => editField({ id: field.id, payload })}
+                      toggleValidation={validation =>
+                        toggleValidation({ id: field.id, validation })
+                      }
                       field={field}
                     />
                   )}

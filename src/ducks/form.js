@@ -5,64 +5,106 @@ const REMOVE_FIELD = "fields/REMOVE";
 const SWAP_FIELD = "fields/SWAP";
 const EDIT_FIELD = "fields/EDIT";
 const MOVE_FIELD = "fields/MOVE";
+const ADD_VALIDATION = "validation/ADD";
+const REMOVE_VALIDATION = "validation/REMOVE";
+const TOGGLE_VALIDATION = "validation/TOGGLE";
+
+const validationReducer = (validations = [], action) => {
+  switch (action.type) {
+    case TOGGLE_VALIDATION: {
+      if (validations.includes(action.validation)) {
+        return validations.filter(
+          validation => !validation === action.validation
+        );
+      }
+      return validations.concat(action.validation);
+    }
+    case ADD_VALIDATION: {
+      if (!validations.includes(action.validation)) {
+        return validations.concat(action.validation);
+      }
+      return validations;
+    }
+    case REMOVE_VALIDATION: {
+      return validations.filter(
+        validation => !validation === action.validation
+      );
+    }
+    default:
+      return validations;
+  }
+};
 
 const inBounds = (array, index) => !!array[index];
 const randomInt = () => Math.floor(Math.random() * 100000000);
 
-const fieldReducer = (state = [], action) => {
+const fieldReducer = (fields = [], action) => {
   switch (action.type) {
     case ADD_FIELD: {
-      return state.concat({ ...action.payload, id: randomInt() });
+      return fields.concat({ ...action.payload, id: randomInt() });
     }
     case REMOVE_FIELD: {
-      return state.filter(({ id }) => id !== action.id);
+      return fields.filter(({ id }) => id !== action.id);
     }
     case SWAP_FIELD: {
       const { from, to } = action;
-      const fromInBounds = inBounds(state, from);
-      const toInBounds = inBounds(state, to);
+      const fromInBounds = inBounds(fields, from);
+      const toInBounds = inBounds(fields, to);
       if (fromInBounds && toInBounds) {
-        return state.map((field, index) => {
+        return fields.map((field, index) => {
           if (index === from) {
-            return state[to];
+            return fields[to];
           } else if (index === to) {
-            return state[from];
+            return fields[from];
           }
           return field;
         });
       }
-      return state;
+      return fields;
     }
     case MOVE_FIELD: {
       const { from, to } = action;
-      const result = [...state];
+      const result = [...fields];
       const [removed] = result.splice(from, 1);
       result.splice(to, 0, removed);
       return result;
     }
     case EDIT_FIELD: {
-      return state.map(
+      return fields.map(
         field =>
           action.id === field.id ? { ...field, ...action.payload } : field
       );
     }
+    case TOGGLE_VALIDATION:
+    case ADD_VALIDATION:
+    case REMOVE_VALIDATION: {
+      return fields.map(
+        field =>
+          action.id === field.id
+            ? {
+                ...field,
+                validations: validationReducer(field.validations, action)
+              }
+            : field
+      );
+    }
     default: {
-      return state;
+      return fields;
     }
   }
 };
 
-const reducer = (state = { name: "", fields: [] }, action) => {
+const reducer = (form = { name: "", fields: [] }, action) => {
   switch (action.type) {
     case SET_FORM: {
       return action.form;
     }
     case EDIT_NAME: {
       const { name } = action;
-      return { ...state, name };
+      return { ...form, name };
     }
     default: {
-      return { ...state, fields: fieldReducer(state.fields, action) };
+      return { ...form, fields: fieldReducer(form.fields, action) };
     }
   }
 };
@@ -78,5 +120,21 @@ export const editField = ({ id, payload }) => ({
   id,
   payload
 });
+export const toggleValidation = ({ id, validation }) => ({
+  type: TOGGLE_VALIDATION,
+  id,
+  validation
+});
+export const addValidation = ({ id, validation }) => ({
+  type: ADD_VALIDATION,
+  id,
+  validation
+});
+export const removeValidation = ({ id, validation }) => ({
+  type: REMOVE_VALIDATION,
+  id,
+  validation
+});
+
 export const swapField = ({ from, to }) => ({ type: SWAP_FIELD, from, to });
 export const moveField = ({ from, to }) => ({ type: MOVE_FIELD, from, to });

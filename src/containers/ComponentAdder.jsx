@@ -15,7 +15,7 @@ const ComponentAdder = ({ addField }) => (
       <Button
         primary
         my={2}
-        key={type}
+        key={`${element}-${type}`}
         onClick={() => addField({ payload: { element, type } })}
       >
         {type} {element}

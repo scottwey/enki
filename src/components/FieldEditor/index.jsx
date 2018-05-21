@@ -1,24 +1,11 @@
 import React from "react";
 import { Flex } from "grid-styled";
-import {
-  Button,
-  Text,
-  EditableText,
-  TextArea,
-  Input
-} from "@scottwey/alkali-ui";
-import faCog from "@fortawesome/fontawesome-free-solid/faCog";
+import { Button, Text, EditableText } from "@scottwey/alkali-ui";
 import faTimes from "@fortawesome/fontawesome-free-solid/faTimes";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import Settings from "components/FieldEditor/Settings";
 import SettingsButton from "components/FieldEditor/SettingsButton";
-
-const elementMapping = { textarea: TextArea, input: Input };
-
-const FieldRenderer = ({ element, type, placeholder }) => {
-  const Element = elementMapping[element] || element;
-  return <Element type={type} placeholder={placeholder} />;
-};
+import FieldRenderer from "components/FieldRenderer";
 
 const FieldContainer = Flex.extend`
   position: relative;
@@ -37,11 +24,12 @@ class Field extends React.Component {
       field,
       onRemove,
       onEdit,
+      toggleValidation,
       provided,
       beingDragged,
       ...rest
     } = this.props;
-    const { id, type, label, element, placeholder } = field;
+    const { id, type, label, element, placeholder, validations } = field;
     return (
       <FieldContainer
         {...rest}
@@ -75,22 +63,32 @@ class Field extends React.Component {
           element={element}
           placeholder={placeholder}
         />
-        {onRemove && (
-          <Flex w={1} justifyContent="flex-end">
-            <Button
-              white
-              color="red"
-              mx={2}
-              mt={3}
-              px={3}
-              onClick={() => onRemove({ id })}
-            >
-              <FontAwesomeIcon icon={faTimes} />
-            </Button>
+        <Flex w={1} justifyContent="space-between">
+          <Text fontSize={2} w={2 / 3} justifyContent="flex-start">
+            {validations && validations.join(", ")}
+          </Text>
+          <Flex justifyContent="flex-end">
+            {onRemove && (
+              <Button
+                white
+                color="red"
+                mx={2}
+                mt={3}
+                px={3}
+                onClick={() => onRemove({ id })}
+              >
+                <FontAwesomeIcon icon={faTimes} />
+              </Button>
+            )}
             <SettingsButton id={id} />
           </Flex>
-        )}
-        <Settings onEdit={onEdit} id={id} field={field} />
+        </Flex>
+        <Settings
+          toggleValidation={toggleValidation}
+          onEdit={onEdit}
+          id={id}
+          field={field}
+        />
       </FieldContainer>
     );
   }

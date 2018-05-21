@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text } from "@scottwey/alkali-ui";
+import { Button } from "@scottwey/alkali-ui";
 import showable from "connectors/showable";
 import faCog from "@fortawesome/fontawesome-free-solid/faCog";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
