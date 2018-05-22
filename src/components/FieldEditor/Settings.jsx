@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { Box } from "grid-styled";
 import { Text, Input } from "@scottwey/alkali-ui";
 import showable from "connectors/showable";
-import { REQUIRED } from "validationNames";
+import Label from "components/Label";
+import { strings } from "validations";
 
 const SettingsContainer = Box.extend`
   transition: all 0.3s ease;
@@ -13,12 +14,6 @@ const SettingsContainer = Box.extend`
   &:hover {
     border-left: 5px solid rgba(120, 120, 140, 0.7);
   }
-`;
-
-const Label = styled.label`
-  padding: 0.5rem 0;
-  display: block;
-  font-size: 1rem;
 `;
 
 const Checkbox = styled.input.attrs({ type: "checkbox" })`
@@ -38,6 +33,9 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
         value={field.name}
         onChange={e => onEdit({ name: e.target.value })}
       />
+      <Text fontSize={1} red>
+        Required
+      </Text>
     </Label>
     <Label>
       Field Label
@@ -59,8 +57,10 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
     </Label>
     <Label>
       <Checkbox
-        checked={!!field.validations && field.validations.includes(REQUIRED)}
-        onChange={() => toggleValidation(REQUIRED)}
+        checked={
+          !!field.validations && field.validations.includes(strings.REQUIRED)
+        }
+        onChange={() => toggleValidation(strings.REQUIRED)}
       />
       Required Field
     </Label>

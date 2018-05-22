@@ -13,7 +13,7 @@ const ErrorsAndWarnings = Flex.extend.attrs({
   transition: all .3s ease;
   background: ${({ error, warning }) =>
     error || warning ? "white" : "transparent"};
-  height: ${({ error, warning }) => (error || warning ? "auto" : "0")};
+  max-height: ${({ error, warning }) => (error || warning ? "1000px" : "0")};
   color: ${({ error, warning }) =>
     error ? "red" : warning ? "#eebb00" : themeGet("colors.black", "black")};
 `;
