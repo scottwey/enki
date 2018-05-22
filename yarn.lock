@@ -25,9 +25,9 @@
     humps "^2.0.1"
     prop-types "^15.5.7"
 
-"@scottwey/alkali-ui@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@scottwey/alkali-ui/-/alkali-ui-0.2.6.tgz#3d8538ef2105ce50f26eb98035a953c09c06daaa"
+"@scottwey/alkali-ui@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@scottwey/alkali-ui/-/alkali-ui-0.2.7.tgz#7300ebf34e77962cebcee1ac660ec3dd4e2d0a5e"
   dependencies:
     grid-styled "^3.2.1"
     polished "^1.9.2"

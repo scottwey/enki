@@ -29,7 +29,7 @@ class Field extends React.Component {
       beingDragged,
       ...rest
     } = this.props;
-    const { id, type, label, element, placeholder, validations } = field;
+    const { id, type, name, label, element, placeholder, validations } = field;
     return (
       <FieldContainer
         {...rest}
@@ -56,7 +56,20 @@ class Field extends React.Component {
             my={2}
             onChange={e => onEdit({ label: e.target.value })}
           />
-          <Text fontSize={1}>{type || element}</Text>
+          <Flex>
+            <Text
+              color={name ? null : "white"}
+              background={name ? null : "red"}
+              fontSize={1}
+              mr={1}
+            >
+              {name || "no name"}
+            </Text>
+            <Text fontSize={1}>:</Text>
+            <Text fontSize={1} ml={1}>
+              {type || element}
+            </Text>
+          </Flex>
         </Flex>
         <FieldRenderer
           type={type}

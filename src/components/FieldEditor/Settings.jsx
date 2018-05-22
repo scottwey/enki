@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Box } from "grid-styled";
-import { Input } from "@scottwey/alkali-ui";
+import { Text, Input } from "@scottwey/alkali-ui";
 import showable from "connectors/showable";
 import { REQUIRED } from "validationNames";
 
@@ -18,6 +18,7 @@ const SettingsContainer = Box.extend`
 const Label = styled.label`
   padding: 0.5rem 0;
   display: block;
+  font-size: 1rem;
 `;
 
 const Checkbox = styled.input.attrs({ type: "checkbox" })`
@@ -26,8 +27,20 @@ const Checkbox = styled.input.attrs({ type: "checkbox" })`
 
 const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
   <SettingsContainer mt={2} w={1} pl={3} show={show}>
+    <Text mt={1} mb={3}>
+      Field Settings
+    </Text>
     <Label>
-      Label
+      Field Name
+      <Input
+        mt={1}
+        type="text"
+        value={field.name}
+        onChange={e => onEdit({ name: e.target.value })}
+      />
+    </Label>
+    <Label>
+      Field Label
       <Input
         mt={1}
         type="text"
@@ -36,7 +49,7 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
       />
     </Label>
     <Label>
-      Placeholder
+      Field Placeholder
       <Input
         mt={1}
         type="text"
@@ -49,7 +62,7 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
         checked={!!field.validations && field.validations.includes(REQUIRED)}
         onChange={() => toggleValidation(REQUIRED)}
       />
-      Required
+      Required Field
     </Label>
   </SettingsContainer>
 );
