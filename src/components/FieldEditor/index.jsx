@@ -53,7 +53,6 @@ class Field extends React.Component {
           <EditableText
             value={label}
             placeholder="Label"
-            my={1}
             onChange={e => onEdit({ label: e.target.value })}
           />
           <Flex>

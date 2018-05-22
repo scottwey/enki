@@ -9,7 +9,13 @@ const ButtonColumn = Flex.extend`
 `;
 
 const ComponentAdder = ({ addField }) => (
-  <ButtonColumn flexDirection="column" alignItems="center" px={4} py={4}>
+  <ButtonColumn
+    flexDirection="column"
+    alignItems="center"
+    w={1 / 6}
+    px={4}
+    py={4}
+  >
     <Title mb={3}>Components</Title>
     {inputTypes.map(({ element, type }) => (
       <Button

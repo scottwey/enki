@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { Flex } from "grid-styled";
-import { Card, Title, Button } from "@scottwey/alkali-ui";
+import { Card, Text, Title, Button } from "@scottwey/alkali-ui";
 import FieldRenderer from "components/FieldRenderer";
 import validate from "utility/validate";
 import fieldNameMapper from "utility/fieldNameMapper";
@@ -30,7 +30,7 @@ const FormikFieldRenderer = ({
   const touched = touch[id];
   return (
     <LargeLabel>
-      {label}
+      <Text my={1}>{label || "Label"}</Text>
       <Flex flexDirection="column" justifyContent="center">
         <FieldRenderer
           name={id}
@@ -48,7 +48,7 @@ const FormikFieldRenderer = ({
 const FormRenderer = ({ form }) => {
   const { name: formName, fields } = form;
   return (
-    <Flex w={2 / 6} px={3}>
+    <Flex w={1 / 2} px={3} justifyContent="flex-start">
       <Card primary w={1} flexDirection="column" px={4} py={4} mt={4}>
         <Title my={4}>{formName || "Form Name"}</Title>
         <Formik

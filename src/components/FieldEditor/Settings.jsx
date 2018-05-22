@@ -9,6 +9,7 @@ import { strings } from "validations";
 const SettingsContainer = Box.extend`
   transition: all 0.3s ease;
   max-height: ${({ show }) => (show ? "800px" : "0")};
+  opacity: ${({ show }) => (show ? "1" : "0")};
   overflow-y: hidden;
   border-left: 5px solid rgba(120, 120, 140, 0.3);
   &:hover {
@@ -32,6 +33,7 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
         type="text"
         value={field.name}
         onChange={e => onEdit({ name: e.target.value })}
+        placeholder={field.id}
       />
       <Text fontSize={1} red>
         Required
@@ -44,6 +46,7 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
         type="text"
         value={field.label}
         onChange={e => onEdit({ label: e.target.value })}
+        placeholder="Label"
       />
     </Label>
     <Label>
@@ -53,6 +56,7 @@ const Settings = ({ show, onEdit, field, toggleValidation, ...rest }) => (
         type="text"
         value={field.placeholder}
         onChange={e => onEdit({ placeholder: e.target.value })}
+        placeholder="Placeholder"
       />
     </Label>
     <Label>
