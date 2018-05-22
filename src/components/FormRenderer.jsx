@@ -14,6 +14,7 @@ const LargeLabel = Label.extend`
 
 const FormikFieldRenderer = ({
   id,
+  validations,
   label,
   values,
   errors,
@@ -30,7 +31,12 @@ const FormikFieldRenderer = ({
   const touched = touch[id];
   return (
     <LargeLabel>
-      <Text my={1}>{label || "Label"}</Text>
+      <Flex w={1} my={1} justifyContent="space-between" alignItems="flex-end">
+        <Text>{label || "Label"}</Text>
+        <Text fontSize={2} justifyContent="flex-end">
+          {validations && validations.join(", ")}
+        </Text>
+      </Flex>
       <Flex flexDirection="column" justifyContent="center">
         <FieldRenderer
           name={id}
