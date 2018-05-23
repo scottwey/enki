@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { Flex } from "grid-styled";
+import ReactJson from "react-json-view";
 import { Card, Text, Title, Button } from "@scottwey/alkali-ui";
 import FieldRenderer from "components/FieldRenderer";
 import validate from "utility/validate";
@@ -54,55 +55,66 @@ const FormikFieldRenderer = ({
 const FormRenderer = ({ form }) => {
   const { name: formName, fields } = form;
   return (
-    <Flex w={1 / 2} px={3} justifyContent="flex-start">
-      <Card primary w={1} flexDirection="column" px={4} py={4} mt={4}>
-        <Title my={4}>{formName || "Form Name"}</Title>
-        <Formik
-          validate={validate.bind(null, fields)}
-          onSubmit={(values, { setSubmitting }) => {
-            const mappedValues = fieldNameMapper(fields, values);
-            console.log(mappedValues);
-            setSubmitting(false);
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting
-          }) => {
-            const isErrored = Object.keys(errors).length > 0;
-            return (
-              <form onSubmit={handleSubmit}>
-                {fields.map(field => (
-                  <FormikFieldRenderer
-                    key={field.id}
-                    values={values}
-                    errors={errors}
-                    touched={touched}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    {...field}
-                  />
-                ))}
-                <Flex justifyContent="flex-end" w={1} mt={4}>
-                  <Button
-                    dark
-                    type="submit"
-                    disabled={isSubmitting || isErrored}
-                  >
-                    Submit
-                  </Button>
-                </Flex>
-              </form>
-            );
-          }}
-        </Formik>
-      </Card>
-    </Flex>
+    <Card
+      primary
+      w={[1, 3 / 4, 1 / 2, 2 / 6]}
+      flexDirection="column"
+      px={[3, 4]}
+      py={4}
+      mt={4}
+      mx={2}
+    >
+      <Title my={4}>{formName || "Form Name"}</Title>
+      <Formik
+        validate={validate.bind(null, fields)}
+        onSubmit={(values, { setSubmitting }) => {
+          const mappedValues = fieldNameMapper(fields, values);
+          console.log(mappedValues);
+          setSubmitting(false);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting
+        }) => {
+          const isErrored = Object.keys(errors).length > 0;
+          return (
+            <form onSubmit={handleSubmit}>
+              {fields.map(field => (
+                <FormikFieldRenderer
+                  key={field.id}
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  {...field}
+                />
+              ))}
+              <Flex justifyContent="flex-end" w={1} mt={4}>
+                <Button dark type="submit" disabled={isSubmitting || isErrored}>
+                  Submit
+                </Button>
+              </Flex>
+              <Flex flexDirection="column" px={[2, 4]}>
+                <Title mt={3} mb={2}>
+                  Input
+                </Title>
+                <ReactJson
+                  style={{ background: "transparent" }}
+                  src={fieldNameMapper(fields, values)}
+                />
+              </Flex>
+            </form>
+          );
+        }}
+      </Formik>
+    </Card>
   );
 };
 

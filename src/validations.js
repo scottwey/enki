@@ -1,6 +1,5 @@
 export const functions = {};
-functions.required = value =>
-  !value ? "Please fill this field in." : undefined;
+functions.required = value => (!value ? "Please fill this in." : undefined);
 
 export const strings = {};
 Object.keys(functions).forEach(name => {

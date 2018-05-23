@@ -6,7 +6,7 @@ import ComponentAdder from "containers/ComponentAdder";
 
 const Editor = props => {
   return (
-    <Flex w={1} justifyContent="center" alignItems="flex-start">
+    <Flex w={1} justifyContent="center" alignItems="flex-start" wrap>
       <ComponentAdder />
       <FormEditor />
       <FormRenderer />

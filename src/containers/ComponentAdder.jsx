@@ -15,6 +15,7 @@ const ComponentAdder = ({ addField }) => (
     w={1 / 6}
     px={4}
     py={4}
+    mx={2}
   >
     <Title mb={3}>Components</Title>
     {inputTypes.map(({ element, type }) => (

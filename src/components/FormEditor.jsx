@@ -1,8 +1,9 @@
 import React from "react";
 import { Flex } from "grid-styled";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Card, EditableTitle } from "@scottwey/alkali-ui";
+import { Title, Card, EditableTitle } from "@scottwey/alkali-ui";
 import Field from "components/FieldEditor";
+import FormJson from "containers/FormJson";
 
 const onDragEnd = (callback, { source, destination }) => {
   if (!destination) {
@@ -26,16 +27,18 @@ const FormEditor = ({
       <Droppable droppableId="droppable">
         {(provided, snapshot) => (
           <Card
-            primary
-            w={2 / 6}
+            dark
+            w={[1, 3 / 4, 1 / 2, 2 / 6]}
             flexDirection="column"
             px={0}
             py={4}
             mt={4}
+            mx={2}
             innerRef={provided.innerRef}
           >
             <Flex w={1} py={4} pl={4} justifyContent="flex-start">
               <EditableTitle
+                autoFocus
                 value={form.name}
                 placeholder="Form Name"
                 onChange={e => editName({ name: e.target.value })}
@@ -63,6 +66,12 @@ const FormEditor = ({
               );
             })}
             {provided.placeholder}
+            <Flex flexDirection="column" px={[2, 4]}>
+              <Title mt={4} mb={3}>
+                Configuration
+              </Title>
+              <FormJson />
+            </Flex>
           </Card>
         )}
       </Droppable>
