@@ -22,13 +22,13 @@
     "styled-system": "^2.2.5"
   },
   "devDependencies": {
+    "dotenv": "^5.0.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
+    "preinstall": "[ -z $NETLIFY ] || mv .npmrc.netlify .npmrc",
     "start": "NODE_PATH=src/ react-scripts start",
     "build": "NODE_PATH=src/ react-scripts build",
-    "netlify-build":
-      "mv .npmrc.netlify .npmrc && NODE_PATH=src/ react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
