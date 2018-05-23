@@ -101,7 +101,7 @@ const FormRenderer = ({ form }) => {
                   Submit
                 </Button>
               </Flex>
-              <Flex flexDirection="column" px={[2, 4]}>
+              <Flex flexDirection="column">
                 <Title mt={3} mb={2}>
                   Input
                 </Title>
