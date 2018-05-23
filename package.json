@@ -27,6 +27,8 @@
   "scripts": {
     "start": "NODE_PATH=src/ react-scripts start",
     "build": "NODE_PATH=src/ react-scripts build",
+    "netlify-build":
+      "NODE_PATH=src/ mv .npmrc.netlify .npmrc && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
